@@ -8,9 +8,11 @@ from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.tools import run
 import json
 from pymongo import MongoClient
+from jarvis import configuration
 
 class Google:
     def __init__(self):
+        self.configuration_jarvis = configuration
         mongo = MongoClient(self.configuration_jarvis['database']['server'], \
                             self.configuration_jarvis['database']['port'])
         self.configuration = mongo.jarvis.plugins.find_one({"name": "Google"})
