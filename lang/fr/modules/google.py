@@ -8,14 +8,14 @@ from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.tools import run
 import json
 from pymongo import MongoClient
-from jarvis import configuration
+from lisa import configuration
 
 class Google:
     def __init__(self):
-        self.configuration_jarvis = configuration
-        mongo = MongoClient(self.configuration_jarvis['database']['server'], \
-                            self.configuration_jarvis['database']['port'])
-        self.configuration = mongo.jarvis.plugins.find_one({"name": "Google"})
+        self.configuration_lisa = configuration
+        mongo = MongoClient(self.configuration_lisa['database']['server'], \
+                            self.configuration_lisa['database']['port'])
+        self.configuration = mongo.lisa.plugins.find_one({"name": "Google"})
 
     def getCalendars(self,args):
         FLAGS = gflags.FLAGS
@@ -31,7 +31,7 @@ class Google:
             client_id=self.configuration['configuration']['account']['client_id'],
             client_secret=self.configuration['configuration']['account']['client_secret'],
             scope='https://www.googleapis.com/auth/calendar',
-            user_agent='JARVIS/0.1')
+            user_agent='LISA/0.1')
 
         # To disable the local server feature, uncomment the following line:
         FLAGS.auth_local_webserver = False

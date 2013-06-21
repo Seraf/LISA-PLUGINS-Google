@@ -1,14 +1,14 @@
 {
     "name": "Google",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "Julien Syx",
     "enabled": 1,
     "description_fr": "Ce plugin permet d'interagir avec l'ensemble des services Google",
     "lang": ["fr"],
     "configuration": {
         "account": {
-            "email": "jarvis.systeme@gmail.com",
-            "password": "jarvispowered",
+            "email": "lisa.project@gmail.com",
+            "password": "lisapowered",
             "client_id": "779399468423.apps.googleusercontent.com",
             "client_secret": "YzGpGCXABzZAO4pfD_ZV4q_d",
             "developer_key": "AIzaSyAOdvOzmU3VkyDKj4baRYbZ3y8HM2Alc64",
