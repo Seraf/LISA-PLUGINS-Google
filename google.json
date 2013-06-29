@@ -1,9 +1,11 @@
 {
     "name": "Google",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "Julien Syx",
     "enabled": 1,
-    "description_fr": "Ce plugin permet d'interagir avec l'ensemble des services Google",
+    "description": [
+        {"description_fr": "Ce plugin permet d'interagir avec l'ensemble des services Google"}
+    ],
     "lang": ["fr"],
     "configuration": {
         "account": {
