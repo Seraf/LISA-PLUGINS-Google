@@ -6,14 +6,20 @@ from apiclient.discovery import build
 from oauth2client.file import Storage
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.tools import run
-import json
+import json, os, inspect
 from pymongo import MongoClient
 from lisa import configuration
+
+import gettext
+
+path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(
+    inspect.getfile(inspect.currentframe()))[0],os.path.normpath("../lang/"))))
+_ = translation = gettext.translation(domain='chat', localedir=path, languages=[configuration['lang']]).ugettext
 
 class Google:
     def __init__(self):
         self.configuration_lisa = configuration
-        mongo = MongoClient(self.configuration_lisa['database']['server'], \
+        mongo = MongoClient(self.configuration_lisa['database']['server'],
                             self.configuration_lisa['database']['port'])
         self.configuration = mongo.lisa.plugins.find_one({"name": "Google"})
 
@@ -67,23 +73,23 @@ class Google:
                         if event['start']['dateTime']:
                             event_date = dateutil.parser.parse(event['start']['dateTime']).date()
                             event_time = dateutil.parser.parse(event['start']['dateTime']).time()
-                            if (args[0] == "aujourd'hui" or args[0] == "today") and (today == event_date):
+                            if (args[0] == _('today')) and (today == event_date):
                                 event_list[event_time] = event['summary']
-                            if (args[0] == "demain" or args[0] == "tomorrow") and (tomorrow == event_date):
+                            if (args[0] == _('tomorrow')) and (tomorrow == event_date):
                                 event_list[event_time] = event['summary']
                 page_token = events.get('nextPageToken')
                 if not page_token:
                     break
         if not event_list.items():
-            return u"Il n'y a aucun évenement prévu pour ce jour"
+            return _('no_event')
         sorted = event_list.items()
         sorted.sort()
-        list_event_str = u"Voici les évenements prévus pour "+args[0]+" : "
+        list_event_str = _('events_scheduled') % args[0]
         first = True
         for event_time, event_summary in sorted:
             if first == False:
-                list_event_str = list_event_str + u" puis "
-            list_event_str = list_event_str + event_summary+u" à " + event_time.strftime("%H") +u" heure "+ event_time.strftime("%M")
+                list_event_str = list_event_str + _(' then ')
+            list_event_str = list_event_str + event_summary+ _(' at ') + event_time.strftime(_('time'))
             first = False
-        return json.dumps({"plugin": "google","method": "getCalendars",\
+        return json.dumps({"plugin": "google","method": "getCalendars",
                            "body": list_event_str})

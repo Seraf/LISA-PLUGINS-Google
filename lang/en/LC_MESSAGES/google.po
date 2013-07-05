@@ -1,0 +1,34 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: Julien Syx\n"
+"POT-Creation-Date: 2013-07-05 07:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Julien SYX <julien.syx@lisa-project.net>\n"
+"Language-Team: EN <julien.syx@lisa-project.net>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../modules/google.py
+msgid "no_event"
+msgstr "There is no event scheduled for this day."
+
+msgid "events scheduled"
+msgstr "There's the events scheduled for %s : "
+
+msgid " then "
+msgstr " then "
+
+msgid " at "
+msgstr " at "
+
+msgid "time"
+msgstr "%H:%M%p"
+
+msgid "tomorrow"
+msgstr "tomorrow"
+
+msgid "today"
+msgstr "today"
